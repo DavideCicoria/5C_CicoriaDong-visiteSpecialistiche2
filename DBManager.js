@@ -37,7 +37,7 @@ function DBManager(conf) {
         },
         insert: (booking) => {
             const template = `
-                INSERT INTO booking (idType, date, hour, name) VALUES ('%IDTYPE', '%DATE', '%HOUR', '%NAME')
+                INSERT INTO booking (idType, date, hour, name) VALUES (%IDTYPE, '%DATE', %HOUR, '%NAME')
             `;
             let sql = template.replace("%IDTYPE", booking.idType)
                                 .replace("%DATE", booking.date)

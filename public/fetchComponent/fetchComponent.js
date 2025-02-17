@@ -1,4 +1,4 @@
-export const createMiddleware = () => {
+export const generateFetchComponent = () => {
     return {
         setData: (data) => {
             return new Promise((resolve, reject) => {
@@ -7,9 +7,7 @@ export const createMiddleware = () => {
                     headers: {
                         "content-type": "application/json",
                     },
-                    body: JSON.stringify({
-                        value: JSON.stringify(data)
-                    })
+                    body: JSON.stringify(data)
                 })
                 .then(r => r.json())
                 .then(data => resolve(data.result))
@@ -18,19 +16,10 @@ export const createMiddleware = () => {
         },
         getData: () => {
             return new Promise((resolve, reject) => {
-                fetch("/booking/", {
-                    method: "GET",
-                    headers: {
-                        "content-type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        key: key
-                    })
-                })
+                fetch("/booking/")
                 .then(r => r.json())
                 .then(data => {
-                    let dict = JSON.parse(data.result);
-                    resolve(dict);
+                    resolve(data);
                 })
                 .catch(err => reject(err.result));
             })

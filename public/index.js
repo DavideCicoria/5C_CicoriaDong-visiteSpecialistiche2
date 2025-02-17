@@ -22,6 +22,11 @@ const navbar = generateNavbar(navbarContainer);
 const prevButton = generateButtonComponent(prevButtonContainer) ;
 const nextButton = generateButtonComponent(nextButtonContainer) ;
 
+const api = generateFetchComponent();
+api.getData()
+   .then(response => console.log("Successo:", response))
+   .catch(error => console.error("Errore:", error));
+
 fetch("./assets/confClinica.json")
 .then(r => r.json())
 .then(data => {

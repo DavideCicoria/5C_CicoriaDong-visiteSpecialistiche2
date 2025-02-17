@@ -30,9 +30,12 @@ app.post('/booking/add', async (req, res) => {
     }
 });
 
-app.get('/booking/', async (req, res) => {
+app.get('/booking', async (req, res) => {
     try {
         const bookings = await db.selectAll();
+        bookings.forEach(booking => {
+            booking.date = new Date(booking.date).toISOString().split('T')[0].split("-").reverse().join("-");
+        });
         res.json(bookings);
     } catch (error) {
         res.send('Errore nel recupero delle prenotazioni');

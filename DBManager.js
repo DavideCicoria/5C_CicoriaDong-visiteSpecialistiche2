@@ -20,26 +20,20 @@ function DBManager(conf) {
             return executeQuery(`
                 CREATE TABLE IF NOT EXISTS type (
                     id INT PRIMARY KEY AUTO_INCREMENT,
-                    name varchar(20)
-                )
-                
-                CREATE TABLE IF NOT EXISTS booking (
-                    id int PRIMARY KEY AUTO_INCREMENT,
-                    idType int NOT NULL,
-                    date DATE NOT NULL,
-                    hour INT NOT NULL,
-                    name VARCHAR(50),
-                    FOREIGN KEY (idType) REFERENCES type(id) 
-                )
-                `);      
-        },
-        selectAll: () => {
-            const sql = `
-                SELECT b.id, t.name type, b.date, b.hour, b.name
-                FROM booking AS b
-                JOIN type as t ON b.idType = t.id
-            `;
-            return executeQuery(sql); 
+                    name VARCHAR(20)
+                );
+            `).then(() => {
+                return executeQuery(`
+                    CREATE TABLE IF NOT EXISTS booking (
+                        id INT PRIMARY KEY AUTO_INCREMENT,
+                        idType INT NOT NULL,
+                        date DATE NOT NULL,
+                        hour INT NOT NULL,
+                        name VARCHAR(50),
+                        FOREIGN KEY (idType) REFERENCES type(id)
+                    );
+                `);
+            });
         },
         insert: (booking) => {
             const template = `
@@ -51,14 +45,12 @@ function DBManager(conf) {
                                 .replace("%NAME", booking.name);
             return executeQuery(sql);
         },
-        selectSpecific: (date) => {
+        selectAll: () => {
             let sql = `
                 SELECT b.id, t.name type, b.date, b.hour, b.name
                 FROM booking AS b
                 JOIN type as t ON b.idType = t.id
-                WHERE date='%DATE'
             `;
-            sql = sql.replace("%DATE", date);
             return executeQuery(sql); 
         }
     }

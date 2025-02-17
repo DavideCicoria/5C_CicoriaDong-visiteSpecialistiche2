@@ -1,0 +1,24 @@
+{
+  "name": "5c_cicoriadong-visitespecialistiche2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavideCicoria/5C_CicoriaDong-visiteSpecialistiche2.git"
+  },
+  "author": "Davide Cicoria & Marcello Dong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DavideCicoria/5C_CicoriaDong-visiteSpecialistiche2/issues"
+  },
+  "homepage": "https://github.com/DavideCicoria/5C_CicoriaDong-visiteSpecialistiche2#readme",
+  "description": "",
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "express": "^4.21.2",
+    "path": "^0.12.7"
+  }
+}

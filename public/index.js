@@ -22,7 +22,7 @@ const navbar = generateNavbar(navbarContainer);
 const prevButton = generateButtonComponent(prevButtonContainer) ;
 const nextButton = generateButtonComponent(nextButtonContainer) ;
 
-fetch("./conf.json")
+fetch("./assets/conf.json")
 .then(r => r.json())
 .then(data => {
     confFileContent = data;

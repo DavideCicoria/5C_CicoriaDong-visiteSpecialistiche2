@@ -49,7 +49,7 @@ app.get('/booking/', async (req, res) => {
     try {
         const bookings = await db.selectAll();
         bookings.forEach(booking => {
-            booking.date = new Date(booking.date).toISOString().split('T')[0].split("-").reverse().join("/");
+            booking.date = new Date(booking.date).toLocaleDateString('it-IT').split('T')[0].split("-").reverse().join("/");
         });
 
         let transfBooking = {};
@@ -66,7 +66,7 @@ app.get('/booking/', async (req, res) => {
 });
 
 
-server.listen(5500, () => {
+server.listen(80, () => {
     console.log("- server running");
 });
 

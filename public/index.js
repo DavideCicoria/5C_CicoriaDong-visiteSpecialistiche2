@@ -32,8 +32,6 @@ fetch("./assets/confClinica.json")
 .then(data => {
     confFileContent = data;
 
-    componenteFetch.build(confFileContent["cacheToken"]) ;
-
     navbar.build(confFileContent["tipologie"]);
     navbar.render();
     navbar.onclick(category => {
@@ -49,7 +47,8 @@ fetch("./assets/confClinica.json")
     
     componentTable.build(hours, days);
     spinner.classList.remove("d-none");
-    componenteFetch.getData("clinica").then(data => {
+    componenteFetch.getData()
+    .then(data => {
         spinner.classList.add("d-none");
         componentTable.setData(data, navbar.getCurrentCategory());
         componentTable.render();
@@ -61,7 +60,10 @@ fetch("./assets/confClinica.json")
         if (componentTable.add(r)) {
             reservationForm.setStatus(true);
             componentTable.setData(componentTable.getData(), navbar.getCurrentCategory());
-            componenteFetch.setData("clinica", componentTable.getData()).then(r => console.log(r));
+            //componenteFetch.setData("clinica", componentTable.getData()).then(r => console.log(r));
+            console.log(r)
+            componenteFetch.setData(r)
+            .then(res => console.log(res));
         }
         else {
             reservationForm.setStatus(false);

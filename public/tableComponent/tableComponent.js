@@ -19,14 +19,21 @@ export const generateTable = (parentElement) => {
             }
         },
         render : () => {
+            /*
+            console.log("----");
+            console.log(currentData);
+            */
             let html = '<table class="table table-bordered"> <thead>' ;
             let dataKeys = Object.keys(currentData);
             let dataValues = Object.values(currentData);
+            console.log("---")
+            console.log(dataValues);
+            console.log("---")
 
             //Headers
             html += "<tr><th class='table-secondary'>#</th>";
             for (let i = 0; i < days.length; i++) {
-                html += "<th  class='table-secondary'>" + days[i] + "\n" + dataKeys[i*hours.length].split("-")[1] + "</th>";
+                html += "<th class='table-secondary'>" + days[i] + "\n" + dataKeys[i*hours.length].split("-")[1] + "</th>";
             }
             html += "</tr>";
             
@@ -37,11 +44,13 @@ export const generateTable = (parentElement) => {
                     html += "<td>" + dataValues[i + h] + "</td>";
                 }
                 html += "</tr>";
+                console.log(html);
             }
             
             parentElement.innerHTML = html ;
         },
         add : (reservation) => {
+            //console.log(reservation);
             if (!cacheData[Object.keys(reservation)[0]]) { //Se è presente il valore
                 cacheData[Object.keys(reservation)[0]] = Object.values(reservation)[0];
                 return true;

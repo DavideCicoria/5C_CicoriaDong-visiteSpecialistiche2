@@ -27,7 +27,6 @@ app.post('/booking/add', async (req, res) => {
 
         let reservation = {};
 
-        //console.log(req.body);
         let key = Object.keys(req.body)[0]; 
         let value = req.body[key]; 
         let reservationSplit = key.split("-"); 

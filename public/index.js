@@ -37,9 +37,9 @@ fetch("./assets/confClinica.json")
     navbar.onclick(category => {
         reservationForm.setType(category);
         spinner.classList.remove("d-none");
-        componenteFetch.getData("clinica").then((r) => {
+        componenteFetch.getData().then((r) => {
             spinner.classList.add("d-none");
-            componentTable.setData(r ,category)
+            componentTable.setData(r,category)
             componentTable.render();
         });
     });
@@ -90,7 +90,7 @@ fetch("./assets/confClinica.json")
     setInterval(() => {
         reservationForm.setType(navbar.getCurrentCategory());
         spinner.classList.remove("d-none");
-        componenteFetch.getData("clinica").then((r) => {
+        componenteFetch.getData().then((r) => {
             spinner.classList.add("d-none");
             componentTable.setData(r ,navbar.getCurrentCategory())
             componentTable.render();

@@ -24,16 +24,20 @@ app.use(express.static(path.join(__dirname, "node_modules/bootstrap/dist")));
 
 app.post('/booking/add', async (req, res) => {
     try {
-        //console.log(req.body);
-        let reservation = {};
-        let reservationSplit = req.body.split("-");
-        reservation.idType = reservationSplit[0];
-        let tmp = reservationSplit[1].split("/");
-        let newDate = tmp[2] + '-' + tmp[1] + '-' + tmp[0];
-        reservation.date = newDate;
-        reservation.hour = reservation[2];
-        console.log(JSON.parse(reservation));
 
+        let reservation = {};
+
+        //console.log(req.body);
+        let key = Object.keys(req.body)[0]; 
+        let value = req.body[key]; 
+        let reservationSplit = key.split("-"); 
+        let idType = await db.selectIdType(reservationSplit[0]);
+        reservation.idType = idType[0].id;
+        let tmp = reservationSplit[1].split("/");
+        let newDate = tmp[2] + "-" + tmp[1] + "-" + tmp[0];
+        reservation.date = newDate;
+        reservation.hour = reservationSplit[2]; 
+        reservation.name = value;
 
         await db.insert(reservation);
         res.send('Prenotazione inserita con successo!');

@@ -61,7 +61,6 @@ fetch("./assets/confClinica.json")
             reservationForm.setStatus(true);
             componentTable.setData(componentTable.getData(), navbar.getCurrentCategory());
             //componenteFetch.setData("clinica", componentTable.getData()).then(r => console.log(r));
-            console.log(r)
             componenteFetch.setData(r)
             .then(res => console.log(res));
         }

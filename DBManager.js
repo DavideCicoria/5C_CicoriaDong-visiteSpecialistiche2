@@ -52,6 +52,13 @@ function DBManager(conf) {
                 JOIN type as t ON b.idType = t.id
             `;
             return executeQuery(sql); 
+        },
+        selectIdType: (type) => {
+            let sql = `
+                SELECT * FROM type WHERE name = '%TYPE';
+            `;
+            sql = sql.replace("%TYPE", type);
+            return executeQuery(sql); 
         }
     }
 }

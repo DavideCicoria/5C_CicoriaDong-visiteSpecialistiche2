@@ -59,7 +59,7 @@ function DBManager(conf) {
             `;
             sql = sql.replace("%TYPE", type);
             return executeQuery(sql); 
-        }
+        },
     }
 }
 

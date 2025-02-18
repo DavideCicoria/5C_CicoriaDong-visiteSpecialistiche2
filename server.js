@@ -45,13 +45,21 @@ app.post('/booking/add', async (req, res) => {
     }
 });
 
-app.get('/booking', async (req, res) => {
+app.get('/booking/', async (req, res) => {
     try {
         const bookings = await db.selectAll();
         bookings.forEach(booking => {
-            booking.date = new Date(booking.date).toISOString().split('T')[0].split("-").reverse().join("-");
+            booking.date = new Date(booking.date).toISOString().split('T')[0].split("-").reverse().join("");
         });
-        res.json(bookings);
+
+        let transfBooking = {};
+
+        for (const item of bookings) {
+            const key = item.type + "-" + item.date + "-" + item.hour;
+            transfBooking[key] = item.name;
+        }
+
+        res.json(transfBooking);
     } catch (error) {
         res.send('Errore nel recupero delle prenotazioni');
     }

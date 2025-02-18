@@ -10,7 +10,7 @@ const conf = JSON.parse(fs.readFileSync('conf.json'));
 conf.ssl.ca = fs.readFileSync(__dirname + '/ca.pem');
 db = DBManager(conf);
 db.createTable();
-
+db.selectAll();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true

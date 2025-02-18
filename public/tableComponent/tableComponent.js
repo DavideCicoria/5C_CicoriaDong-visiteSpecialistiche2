@@ -19,10 +19,10 @@ export const generateTable = (parentElement) => {
             }
         },
         render : () => {
-            /*
+            
             console.log("----");
             console.log(currentData);
-            */
+            
             let html = '<table class="table table-bordered"> <thead>' ;
             let dataKeys = Object.keys(currentData);
             let dataValues = Object.values(currentData);
@@ -59,6 +59,7 @@ export const generateTable = (parentElement) => {
         },
         setData : (inputData, type) => {
             cacheData = inputData;
+            console.log(inputData)
             currentData = {};
 
             let hold = new Date(date); // data usata per la tabella visualizzata
@@ -66,7 +67,14 @@ export const generateTable = (parentElement) => {
             for (let i = 0; i < days.length; i++) {
 
                 for (let j = 0; j < hours.length; j++) {
-                    let formatDate =  type + "-" + parseInt(hold.getDate()) + "/" + parseInt(hold.getMonth() + 1) + "/" + hold.getFullYear() + "-" + hours[j];
+                    let formatDate ;
+                    if ((hold.getMonth() + 1) <= 9) {
+                        formatDate =  type + "-" + parseInt(hold.getDate()) + "/0" + parseInt(hold.getMonth() + 1) + "/" + hold.getFullYear() + "-" + hours[j];
+                    } else {
+                        formatDate =  type + "-" + parseInt(hold.getDate()) + "/" + parseInt(hold.getMonth() + 1) + "/" + hold.getFullYear() + "-" + hours[j];
+                    }
+
+                    console.log(formatDate)
                     if (cacheData[formatDate]) {
                         currentData[formatDate] = cacheData[formatDate];
                     } else {
